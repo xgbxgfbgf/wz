@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+	var browser = {
+		versions: function () {
+			var u = navigator.userAgent, app = navigator.appVersion;
+			return {//移动终端浏览器版本信息
+				trident: u.indexOf('Trident') > -1, //IE内核
+				presto: u.indexOf('Presto') > -1, //opera内核
+				webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+				gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+				mobile: !!u.match(/AppleWebKit.*Mobile.*/) , //是否为移动终端
+				ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+				android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+				iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+				iPad: u.indexOf('iPad') > -1, //是否iPad
+				webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+			};
+		}(),
+		language: (navigator.browserLanguage || navigator.language).toLowerCase()
+	}
+	if (browser.versions.mobile == true || browser.versions.ios == true || browser.versions.android == true) {
+		window.location.href = "http://fj9ggn.natappfree.cc/手机/";//如果是手机登录就跳转到百度
+	}else{
+		window.location.href = "http://fj9ggn.natappfree.cc/电脑/";//如果是电脑登录就跳转到银选官网
+	}
+</script>
+
+<script type="text/javascript">
+		var width=document.documentElement.clientWidth;//获取屏幕的宽度
+	var height=document.documentElement.clientHeight;//获取屏幕的高度
+	var bili1=width/750;//屏幕宽度与设计稿宽度的比例（750是设计稿的宽度）
+	var bili2=height/(1336-48);//屏幕高度与设计稿高度的比例(1336是设计稿的高度，其中48是设计稿中含有手机顶部的状态栏，需要去掉，1366-48才是真正需要显示的东西)
+	var bili=bili1<bili2?bili1:bili2;//宽度的比例和高度的比例进行比较，取值最小的
+	var html = document.querySelector('html');//选择html节点
+  	var rem = 16;//手动设置rem与px的比例；
+  	html.style.fontSize = rem + "px";//设置html的默认fontsize为16px。(注意，浏览器中最小值为12px，)
+	var __bili=bili/rem;//将比例和rem进行联系。
+	document.documentElement.style.setProperty('--bili', __bili+"rem");//设置css中的变量为--bili，值为__bili
+
+</script>
+
+
